@@ -76,10 +76,34 @@ function App() {
 
   useEffect(() => {
     document.title = 'Bluebird — Android launcher releases';
-    fetch(asset('downloads.json'), { cache: 'no-store' })
+    const fallback = fetch(asset('downloads.json'), { cache: 'no-store' })
       .then((response) => response.ok ? response.json() : null)
-      .then((data) => setDownloadData(data))
-      .catch(() => setDownloadData(null));
+      .catch(() => null);
+    fetch('https://api.github.com/repos/trebronwayne/bluebird-release/releases?per_page=100', { headers: { Accept: 'application/vnd.github+json' } })
+      .then((response) => response.ok ? response.json() : Promise.reject(new Error('GitHub release data unavailable')))
+      .then((githubReleases) => {
+        const releaseData = githubReleases.map((release) => {
+          const apkAssets = (release.assets || []).filter((item) => item.name.toLowerCase().endsWith('.apk'));
+          return {
+            version: release.tag_name.replace(/^v/, ''),
+            date: new Date(release.published_at || release.created_at).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' }),
+            downloads: apkAssets.reduce((total, item) => total + item.download_count, 0),
+            downloadUrl: apkAssets[0]?.browser_download_url,
+            releaseUrl: release.html_url
+          };
+        }).filter((release) => release.downloadUrl);
+        if (releaseData.length > 0) {
+          setDownloadData({
+            status: 'live',
+            totalApkDownloads: releaseData.reduce((total, release) => total + release.downloads, 0),
+            updatedAt: new Date().toISOString(),
+            releases: releaseData
+          });
+        } else {
+          return fallback.then((data) => setDownloadData(data));
+        }
+      })
+      .catch(() => fallback.then((data) => setDownloadData(data)));
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
