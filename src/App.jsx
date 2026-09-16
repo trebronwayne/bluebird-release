@@ -73,9 +73,36 @@ function formatNumber(value) {
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [downloadData, setDownloadData] = useState(null);
+  const [siteViews, setSiteViews] = useState(null);
 
   useEffect(() => {
     document.title = 'Bluebird — Android launcher releases';
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', 'G-MR4ZZ7151Y');
+
+    const goatCounterScript = document.createElement('script');
+    goatCounterScript.dataset.goatcounter = 'https://bluebird.goatcounter.com/count';
+    goatCounterScript.async = true;
+    goatCounterScript.src = 'https://gc.zgo.at/count.js';
+    document.head.appendChild(goatCounterScript);
+
+    const googleTagScript = document.createElement('script');
+    googleTagScript.async = true;
+    googleTagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-MR4ZZ7151Y';
+    document.head.appendChild(googleTagScript);
+
+    const viewTimer = window.setTimeout(() => {
+      fetch('https://bluebird.goatcounter.com/counter/TOTAL.json', { cache: 'no-store' })
+        .then((response) => response.ok ? response.json() : null)
+        .then((data) => {
+          const count = Number(String(data?.count ?? '').replace(/,/g, ''));
+          if (Number.isFinite(count)) setSiteViews(count);
+        })
+        .catch(() => {});
+    }, 1500);
+
     const fallback = fetch(asset('downloads.json'), { cache: 'no-store' })
       .then((response) => response.ok ? response.json() : null)
       .catch(() => null);
@@ -104,6 +131,8 @@ function App() {
         }
       })
       .catch(() => fallback.then((data) => setDownloadData(data)));
+
+    return () => window.clearTimeout(viewTimer);
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
@@ -160,6 +189,7 @@ function App() {
           <div><strong>26+</strong><span>Android API</span></div>
           <div><strong>{totalDownloads === undefined ? '—' : formatNumber(totalDownloads)}</strong><span>Total APK downloads</span></div>
           <div><strong>0</strong><span>Root permissions</span></div>
+          <div><strong>{siteViews === null ? '—' : formatNumber(siteViews)}</strong><span>Site views</span></div>
         </section>
 
         <section className="section release-section" id="releases">
@@ -211,7 +241,7 @@ function App() {
 
         <section className="legal section-compact" id="privacy">
           <div><p className="kicker">Privacy</p><h2>Privacy and<br /><span>data handling.</span></h2></div>
-          <p>Bluebird does not collect personal data or telemetry from inside the application. Files, settings, and application data remain on the device. Downloads and visits to GitHub are subject to GitHub's privacy policy.</p>
+          <p>Bluebird does not collect personal data or telemetry from inside the application. Files, settings, and application data remain on the device. This release site uses GoatCounter and Google Analytics to measure visits; downloads and visits to GitHub are subject to their respective privacy policies.</p>
         </section>
       </main>
 
