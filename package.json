@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && cp dist/site.html dist/index.html",
+    "build": "node scripts/build.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
