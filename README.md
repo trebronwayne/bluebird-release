@@ -1,38 +1,30 @@
-# Bluebird
+# Bluebird release site
 
-Bluebird is a desktop-styled Android launcher that turns your phone into a compact desktop experience with a taskbar, floating windows, a start-menu style app list, and a small built-in app suite.
+Bluebird is a desktop-style Android launcher with floating windows, a taskbar, and built-in applications. This repository contains the public release site and distributed APK files. The application source is not included.
 
-## Latest release
+## Releases
 
-[![Download Bluebird v2.1](https://img.shields.io/badge/Download-Bluebird%20v2.1-0A84FF?style=for-the-badge)](./assets/apks/Bluebird-v2.1.apk)
+APK files should be attached to GitHub Releases. The release site reads each release asset's GitHub `download_count` and displays the total download count for all published APK assets.
 
-- Version: v2.1
-- Android: 8.0+
-- Requires no root
+The page requests release data directly from GitHub and keeps `downloads.json` as a static fallback for temporary API or rate-limit failures. Only assets ending in `.apk` are included.
 
-## Screenshots
+The displayed number is an asset-download total. It does not represent unique users, installations, or active devices.
 
-![Bluebird desktop screen](assets/img/screenshots/desktop.png)
+## Release checklist
 
-![Bluebird start menu](assets/img/screenshots/startmenu.png)
+1. Create a GitHub Release with a version tag such as `v2.2`.
+2. Upload the APK as a release asset.
+3. Publish the release.
+4. The download-count workflow will update the release site automatically.
 
-![Bluebird file explorer](assets/img/screenshots/explorer.png)
+The APKs in `assets/apks/` are retained as fallback files for the release site while the corresponding GitHub Releases are being created. They are not included in the GitHub release download total.
 
-![Bluebird text editor](assets/img/screenshots/editor.png)
+## Site development
 
-![Bluebird settings](assets/img/screenshots/settings.png)
+```bash
+npm install
+npm run dev
+npm run build
+```
 
-## Repo contents
-
-- `index.html` — landing page and release site
-- `assets/apks/` — downloadable APK builds
-- `assets/img/screenshots/` — app screenshots
-- `assets/js/` — site scripts
-
-## Quick start
-
-1. Download the latest APK above.
-2. Install it on an Android device.
-3. Set Bluebird as your default launcher.
-
-This repo keeps the release site and APK builds together for simple access to the latest version.
+The site is built with React and Vite. GitHub Pages uses the `react-pages` branch.
