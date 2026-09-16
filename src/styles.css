@@ -52,7 +52,7 @@ button { font: inherit; }
 .window-bar { height: 32px; display: flex; align-items: center; gap: 6px; padding: 0 11px; border-bottom: 1px solid var(--line); background: #f1f3f6; }
 .window-bar span { width: 7px; height: 7px; display: block; border-radius: 50%; background: #aab4c1; }
 .window-bar em { margin-left: 7px; color: var(--muted-2); font: 9px ui-monospace, SFMono-Regular, Menlo, monospace; font-style: normal; letter-spacing: .03em; }
-.stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
+.stats { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
 .stats div { min-height: 102px; display: flex; flex-direction: column; justify-content: center; gap: 7px; padding: 0 23px; border-right: 1px solid var(--line); }
 .stats div:first-child { padding-left: 0; }
 .stats div:last-child { border-right: 0; }
@@ -127,7 +127,7 @@ button { font: inherit; }
   .hero { grid-template-columns: 1fr; gap: 48px; padding-top: 68px; }
   .hero-copy { max-width: 600px; }
   .stats { grid-template-columns: repeat(2, 1fr); }
-  .stats div:nth-child(2) { border-right: 0; }
+  .stats div:nth-child(even) { border-right: 0; }
   .stats div { min-height: 86px; padding: 0 15px; }
   .stats div:first-child { padding-left: 15px; }
   .release-section, .showcase, .features, .docs-section { padding-top: 102px; }
