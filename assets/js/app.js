@@ -3,9 +3,12 @@
   /* ── Release repo: builds are hosted together in assets/apks, ── */
   /* ── named Bluebird-vX.X.apk (source is not public) ── */
   const REPO = 'https://github.com/trebronwayne/bluebird-release';
-  const LATEST_VERSION = 'v2.1';
+  const LATEST_VERSION = 'v2.2';
 
   function apkUrl(version) {
+    if (version === 'v2.2') {
+      return REPO + '/releases/download/v2.2/Bluebird-v2.2.apk';
+    }
     return REPO + '/raw/main/assets/apks/Bluebird-' + version + '.apk';
   }
 
@@ -99,28 +102,6 @@
     if (pageTitles[page]) document.title = pageTitles[page];
   };
 
-  /* ── Theme handling ── */
-  function getSystemTheme() {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  }
-  function applyTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    document.body.setAttribute('data-theme', theme);
-    localStorage.setItem('bb-theme', theme);
-  }
-
-  const saved = localStorage.getItem('bb-theme');
-  applyTheme(saved || getSystemTheme());
-
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    if (!localStorage.getItem('bb-theme')) applyTheme(e.matches ? 'dark' : 'light');
-  });
-
-  document.getElementById('themeToggle').addEventListener('click', () => {
-    const cur = document.body.getAttribute('data-theme') || getSystemTheme();
-    applyTheme(cur === 'dark' ? 'light' : 'dark');
-  });
-
   /* ── Page navigation ── */
   const pages = document.querySelectorAll('.page');
   const navLinks = document.querySelectorAll('.nav-links a[data-page]');
@@ -174,30 +155,4 @@
   window.addEventListener('hashchange', handleHash);
   handleHash();
 
-})();
-
-// Bluebird Enterprise — cookie / analytics notice (shared with main site)
-(function(){
-  var KEY = 'be-notice-ack';
-  if (localStorage.getItem(KEY)) return;
-
-  var hasInPagePrivacy = !!document.getElementById('page-privacy');
-  var privacyLink = hasInPagePrivacy
-    ? '<a href="#privacy" onclick="go(\'privacy\');return false;">Privacy Policy</a>'
-    : '<a href="privacy.html">Privacy Policy</a>';
-
-  var bar = document.createElement('div');
-  bar.className = 'cookie-notice';
-  bar.setAttribute('role', 'region');
-  bar.setAttribute('aria-label', 'Cookie notice');
-  bar.innerHTML =
-    '<p>This site uses basic analytics to understand traffic. See our ' +
-    privacyLink + '.</p>' +
-    '<button type="button" class="btn btn-outline btn-sm" id="cookie-ack">Got it</button>';
-  document.body.appendChild(bar);
-
-  document.getElementById('cookie-ack').addEventListener('click', function(){
-    localStorage.setItem(KEY, '1');
-    bar.remove();
-  });
 })();
