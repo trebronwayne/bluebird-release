@@ -2,11 +2,14 @@ import { useEffect, useState } from 'react';
 
 const asset = (path) => (import.meta.env.BASE_URL + path).replace('//assets', '/assets');
 const repo = 'https://github.com/trebronwayne/bluebird-release';
-const latestVersion = '2.1';
-const apkUrl = (version) => asset('assets/apks/Bluebird-v' + version + '.apk');
+const latestVersion = '2.2';
+const apkUrl = (version) => version === latestVersion
+  ? 'https://github.com/trebronwayne/bluebird-release/releases/download/v2.2/Bluebird-v2.2.apk'
+  : asset('assets/apks/Bluebird-v' + version + '.apk');
 
 const releases = [
-  { version: '2.1', status: 'Current release', note: 'Latest improvements and fixes', date: 'September 2026' },
+  { version: '2.2', status: 'Current release', note: 'Latest improvements and fixes', date: 'September 2026' },
+  { version: '2.1', status: 'Previous release', note: 'Latest improvements and fixes', date: 'September 2026' },
   { version: '2.0', status: 'Previous release', note: 'The desktop-styled launcher, refreshed', date: 'August 2026' }
 ];
 
@@ -140,7 +143,7 @@ function App() {
           <div className="docs-panel">
             <div className="section-heading"><div><p className="kicker">Quick start</p><h2>Up and running<br /><span>in a minute.</span></h2></div><p className="section-intro">Install the APK, then choose Bluebird as your default home app. That is it.</p></div>
             <div className="steps"><div><b>01</b><strong>Download</strong><p>Grab the latest APK from the releases above.</p></div><div><b>02</b><strong>Install</strong><p>Install it from your file manager or with ADB.</p></div><div><b>03</b><strong>Set as home</strong><p>Settings → Apps → Default Apps → Home App → Bluebird.</p></div></div>
-            <div className="code-line"><span>adb install bluebird-v2.1.apk</span><button type="button" onClick={() => navigator.clipboard?.writeText('adb install bluebird-v2.1.apk')}>Copy</button></div>
+            <div className="code-line"><span>adb install bluebird-v2.2.apk</span><button type="button" onClick={() => navigator.clipboard?.writeText('adb install bluebird-v2.2.apk')}>Copy</button></div>
           </div>
         </section>
 
@@ -151,7 +154,7 @@ function App() {
 
       <footer className="site-footer">
         <div className="footer-main"><a className="brand" href="#home"><span className="brand-mark"><img src={asset('assets/img/logo_1.png')} alt="" /></span><span><strong>Bluebird</strong><small>desktop-styled launcher</small></span></a><p>Android, with a desktop feel.</p><div className="footer-links"><a href={repo} target="_blank" rel="noreferrer">GitHub</a><a href="#privacy">Privacy</a><a href="#docs">Docs</a></div></div>
-        <div className="footer-bottom"><span>© 2024–2026 Bluebird</span><span>Built for Android · Made in Uganda</span></div>
+        <div className="footer-bottom"><span>© 2024–2026 Bluebird</span><span>Built for Android</span></div>
       </footer>
     </div>
   );
