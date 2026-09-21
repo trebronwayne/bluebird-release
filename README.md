@@ -4,11 +4,13 @@ Bluebird is a desktop-styled Android launcher that turns your phone into a compa
 
 ## Latest release
 
-[![Download Bluebird v2.1](https://img.shields.io/badge/Download-Bluebird%20v2.1-0A84FF?style=for-the-badge)](./assets/apks/Bluebird-v2.1.apk)
+[![Download Bluebird v2.2](https://img.shields.io/badge/Download-Bluebird%20v2.2-0A84FF?style=for-the-badge)](https://github.com/trebronwayne/bluebird-release/releases/download/v2.2/Bluebird-v2.2.apk)
 
-- Version: v2.1
+- Version: v2.2
 - Android: 8.0+
 - Requires no root
+
+Download counts for v2.2 are provided by GitHub on the release asset.
 
 ## Screenshots
 
