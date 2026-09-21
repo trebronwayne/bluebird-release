@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
 <title>Bluebird — Android Desktop-Styled Launcher</title>
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="assets/img/logo.png">
@@ -39,7 +40,7 @@
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Android 8.0+",
   "description": "An Android launcher with a desktop-styled interface — floating windows, a taskbar, a file explorer, and a built-in app suite. No root required.",
-  "softwareVersion": "2.1",
+  "softwareVersion": "2.2",
   "url": "https://bluebirduganda.dpdns.org/bluebird-os/index.html",
   "image": "https://bluebirduganda.dpdns.org/bluebird-os/assets/img/screenshots/desktop.png",
   "offers": {
@@ -49,7 +50,6 @@
   }
 }
 </script>
-<script defer src="https://analytics.digitalplat.org/static/analytics.js" data-property="dpa_kOw1KWCyxdm1ndBFeWG8Ztl09Nwl7xM"></script>
 </head>
 <body>
 
@@ -79,17 +79,6 @@
       </a></li>
     </ul>
 
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-      </svg>
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </svg>
-    </button>
   </div>
 </header>
 
@@ -103,7 +92,7 @@
 
   <div class="hero">
     <div class="hero-eyebrow">
-      <span class="pill">v2.1</span>
+      <span class="pill">v2.2</span>
       <span>Android launcher</span>
     </div>
     <h1>An Android launcher<br>with a <span class="accent">desktop-styled</span><br>interface.</h1>
@@ -118,15 +107,15 @@
       <span class="feature-pill"><span class="dot"></span>Free to Download</span>
     </div>
     <div class="hero-actions">
-      <button class="btn btn-primary btn-lg" onclick="triggerDownload('v2.1')">
+      <button class="btn btn-primary btn-lg" onclick="triggerDownload('v2.2')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download v2.1
+         Download v2.2
       </button>
       <button class="btn btn-ghost btn-lg" onclick="go('releases')">View All Releases</button>
     </div>
     <div class="hero-stats">
       <div class="stat-item">
-        <div class="stat-num">2<span>.1</span></div>
+        <div class="stat-num">2<span>.2</span></div>
         <div class="stat-label">Current Release</div>
       </div>
       <div class="stat-item">
@@ -229,10 +218,15 @@
           </thead>
           <tbody>
             <tr>
-              <td><span class="ver-badge">v2.1</span> <span class="tag tag-latest" style="margin-left:6px;">Current</span></td>
+              <td><span class="ver-badge">v2.2</span> <span class="tag tag-latest" style="margin-left:6px;">Current</span></td>
               <td><span class="tag tag-stable">Stable</span></td>
               <td>26+</td>
-              <td><button class="btn btn-primary btn-sm" onclick="triggerDownload('v2.1')">Download</button></td>
+              <td>
+                <button class="btn btn-primary btn-sm" onclick="triggerDownload('v2.2')">Download</button>
+                <a class="release-count" href="https://github.com/trebronwayne/bluebird-release/releases/tag/v2.2" target="_blank" rel="noopener">
+                  <img src="https://img.shields.io/github/downloads/trebronwayne/bluebird-release/v2.2/total?label=downloads" alt="GitHub release downloads">
+                </a>
+              </td>
             </tr>
             <tr>
               <td><span class="ver-badge">v2.0</span></td>
@@ -347,7 +341,7 @@
           <pre id="adb-code"><code># Step 1: Download the Bluebird APK from the Releases page
 # Step 2: Install it via ADB or from your file manager
 
-adb install bluebird-v2.1.apk
+adb install bluebird-v2.2.apk
 
 # Step 3: Set Bluebird as your default launcher
 # Settings → Apps → Default Apps → Home App → Bluebird</code></pre>
@@ -476,7 +470,7 @@ adb install bluebird-v2.1.apk
             <div class="logo-name">Bluebird</div>
           </div>
         </a>
-        <p>An Android launcher with a desktop-styled interface. Currently on v2.1.</p>
+        <p>An Android launcher with a desktop-styled interface. Currently on v2.2.</p>
         <div class="footer-social-row">
           <a class="footer-social-link" href="https://github.com/trebronwayne/bluebird-release" target="_blank" rel="noopener" title="GitHub releases">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
